@@ -1,16 +1,20 @@
 body{
-    background-image: url(./image.png/bar.png);
+    background-image: url(./image.png/cover.png);
     background-size: 100% 100%;
-    background-position: center;
+    background-position: center 50%;
     min-height: 100vh;
     background-repeat: no-repeat;
-    
+    background-size: cover;
+    background-size:contain;
     font-family: "Gaegu", cursive;
+    margin: 0;
+    margin-top: 6rem;
+   
 }
 
 h1{
    text-align: center;
-   margin-top: 5rem;
+   margin-top: 0rem;
 }
 h1 span{
     display: inline-block;
@@ -19,6 +23,15 @@ h1 span{
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     opacity: 0;
+    filter: drop-shadow(0 0 5px #000);
+}
+@media (max-width: 600px) {
+    h1 span {
+        height: 3rem;
+        width: 2rem;
+        margin-right: 0.3rem;
+        margin-left: 0.3rem;
+    }
 }
 h1 span:nth-child(1){
     animation: apper 0.5s ease forwards, animate 8s ease-in-out infinite;
@@ -159,6 +172,12 @@ h1 span:nth-child(15){
         transform: translateY(0) scale(1);
     }
 }
+@media(prefers-reduced-motion: reduce){
+    *{
+        animation: none !important;
+        transition: none !important;
+    }
+}
 h2{
     text-align: center;
     margin-top: 4rem;
@@ -167,26 +186,95 @@ h2{
     color: #333;
     display:flex;
     justify-content:center;
-    
+    font-size: clamp(1rem, 2vw, 3rem);
     font-family: "Gaegu", cursive;
 
 }
 button{
-    background-image: url(./image.png/yes.png);
-    cursor: pointer;
+    background-image: url(./image.png/startt.png);
+    margin-top: 10rem;
+    margin-right: 10.5rem;
+    margin-left: 1.5rem;
+    width: 199px;
+    cursor:none;
     padding: 30px 40px;
-    box-shadow: #333;
-    border-radius: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px;
+    background-size:contain;
+    border: none;
+    background-size:cover;
     display: block;
     margin-inline: auto;
     margin-bottom: 2rem;
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+     transition: 0.5s;
+     outline:2px  dashed #000;
+    cursor:none;
     animation: apper 4s ease-in-out, animate 4s ease-in-out infinite;
 }
 button:hover{
-    transform: scale(1.5);
-    transition: 0.5s;
-    background-image: url(./image.png/NOO.png);
+    transform: scale(1.05);
+    background-image: url(./image.png/fpp.png);
+
+}
+button:active{
+    transform: scale(0.95);
+}
+#punch-cursor {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 9999;
+    
+}
+.starburst {
+    position: absolute;
+   pointer-events: none;
+    animation: burst 0.5s ease-out forwards;
+    font-size: 2rem;
+    background-color: #ff0;
+    pointer-events: none;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+@keyframes burst {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(1);
+        opacity: 0;
+    }
+}
+.line{
+   background-color: #b1a40de2;
+    height: 20px;
+    color: #b1a40de2;
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    font-size: 1.2rem;
+    transition: color 0.3s ease-in-out;
+    width: 4px;
+    animation:shoot 0.5s ease-out forwards;
+    transform-origin: top center;
+}
+@keyframes shoot {
+    0% {
+        transform: rotate(var(--angle)) translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(var(--angle)) translateY(-50px);
+        opacity: 0;
+    }
 }
